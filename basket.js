@@ -23,9 +23,23 @@ var basket = {
     this.contents.pop(item);
   },
   basketTotal: function() {
+    var preliminaryTotal = 0;
+    var bogofItem = [];
+    var itemCount = 0;
     var total = 0;
     for (var item of this.contents) {
-      total += item.price;
+      preliminaryTotal += item.price;
+    }
+    for (var item of this.contents) {
+      if( item.bogof === true) {
+        bogofItem.push(item);
+        itemCount = bogofItem.length;
+        if (itemCount % 2 === 1) {
+          total = (preliminaryTotal- (item.price*((itemCount-1)/2)));
+        } else if(itemCount % 2 === 0) {
+        total = (preliminaryTotal - (item.price*(itemCount/2)));
+      }
+    }
     }
     return total;
   }

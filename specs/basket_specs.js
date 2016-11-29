@@ -17,18 +17,33 @@ describe("Basket", function() {
   it("can remove mozzarella", function() {
     basket.remove(mozzarella);
     assert.equal(0, basket.count());
-  })
+  });
 
-  it("can have multiple cheeses", function() {
+  it("can have multiple cheeses and checks for bogof items but will add price of 2 when 3 off bogof item is added", function() {
     basket.add(manchego);
+    basket.add(mozzarella);
+    basket.add(mozzarella);
     basket.add(mozzarella);
     basket.add(manchego);
     basket.add(manchego);
-    assert.equal(4, basket.count());
+    assert.equal(6, basket.count());
+    assert.equal(27, basket.basketTotal());
+  });
+
+  it("can have multiple cheeses", function() {
+    basket.contents = [];
+    basket.add(manchego);
+    basket.add(mozzarella);
+    basket.add(mozzarella);
+    basket.add(manchego);
+    basket.add(manchego);
+    assert.equal(5, basket.count());
   })
 
   it("can get basket total", function() {
     assert.equal(22.5, basket.basketTotal());
-  })
+  });
+
+  
 
 });
