@@ -21,8 +21,30 @@ var basket = {
   },
   remove: function(item) {
     this.contents.pop(item);
+  },
+  basketTotal: function() {
+    var total = 0;
+    for (var item of this.contents) {
+      total += item.price;
+    }
+    return total;
   }
 
 };
 
 module.exports = basket;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
